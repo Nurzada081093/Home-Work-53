@@ -16,14 +16,23 @@ const App = () => {
         {id: '3', task: 'Get a good salary'},
     ]);
 
+    const [currentTask, setCurrentTask] = useState<string>('');
 
-    const getTasks = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(event.target.value);
+    const getNewTask = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const task:string = event.target.value;
+        setCurrentTask(task);
     };
+
 
     const addTasks = () => {
-        console.log('Click me!');
+        if (currentTask !== '') {
+            const id:string = String(new Date().getMilliseconds());
+            const newTask: ITask = {id, task: currentTask};
+            setTasks([...tasks, newTask]);
+            setCurrentTask('');
+        }
     };
+
 
     const removeTaskFromBlock = (id:string) => {
         const copyTasks = tasks.filter((task) => task.id !== id);
@@ -38,11 +47,10 @@ const App = () => {
         />
     ));
 
-
     return (
         <div className="container">
             <h1 className="title">Plans of your future!</h1>
-            <AddTaskForm getTask={getTasks} addTask={addTasks}/>
+            <AddTaskForm getTask={getNewTask} addTask={addTasks} task={currentTask}></AddTaskForm>
             <div className="tasks-block">
                 {displayTasks}
             </div>

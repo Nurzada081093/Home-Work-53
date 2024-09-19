@@ -4,29 +4,49 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    border: 1px solid transparent;
 }
 
 .input-block {
-    width: 85%;
+    width: 87%;
     margin-bottom: 10px;
     margin-top: 10px;
-    margin-right: 20px;
+    border: 1px solid transparent;
 }
 
 .input {
-    height: 22px;
+    height: 25px;
     padding: 8px 20px;
     font-size: 18px;
     outline: none;
-    width: 94%;
+    width: 85%;
+    border-radius: 10px;
+    border: transparent;
+    margin-right: 10px;
+    background-color: whitesmoke;
+}
+
+.input:focus {
+    background-color: rgba(142, 220, 227, 0.8);
 }
 
 .button-block {
-    width: 10%;
+    border: 1px solid transparent;
 }
 
 .add-button {
     width: 85px;
     height: 40px;
+    border-radius: 10px;
+    border: transparent;
+    font-size: 18px;
+}
+
+.add-button:hover {
+    background-color: rgba(142, 220, 227, 0.8);
+}
+
+.add-button:active {
+    box-shadow: 0 1rem 2rem rgba(100, 228, 186, 0.73);
+    color: whitesmoke;
 }

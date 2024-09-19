@@ -10,7 +10,7 @@ interface ITask {
 const Task: React.FC<ITask> = ({task, removeTask}) => {
     return (
         <div className="tasks">
-            <p className="task-info">{task}!</p>
+            <p className="task-info">{task}</p>
             <div className="button-delete">
                 <button type="button" onClick={removeTask} className="delete"><img className="delete-icon"
                                                                                    src="https://img.icons8.com/carbon-copy/50/filled-trash.png"
