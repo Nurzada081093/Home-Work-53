@@ -7,7 +7,6 @@ interface IAddTask {
     addTask: React.MouseEventHandler;
 }
 
-
 const AddTaskForm: React.FC<IAddTask> = ({task, getTask, addTask}) => {
     return (
         <div className="send-task-block">

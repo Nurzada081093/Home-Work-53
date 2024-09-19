@@ -6,14 +6,15 @@ import React, {useState} from 'react';
 interface ITask {
     task: string;
     id: string;
+    checked:boolean;
 }
 
 const App = () => {
 
     const [tasks, setTasks] = useState<ITask[]>([
-        {id: '1', task: 'Finish my course'},
-        {id: '2', task: 'Find a job'},
-        {id: '3', task: 'Get a good salary'},
+        {id: '1', task: 'Finish my course', checked: false},
+        {id: '2', task: 'Find a job', checked: false},
+        {id: '3', task: 'Get a good salary', checked: false},
     ]);
 
     const [currentTask, setCurrentTask] = useState<string>('');
@@ -23,20 +24,25 @@ const App = () => {
         setCurrentTask(task);
     };
 
-
     const addTasks = () => {
         if (currentTask !== '') {
             const id:string = String(new Date().getMilliseconds());
-            const newTask: ITask = {id, task: currentTask};
+            const newTask: ITask = {id, task: currentTask, checked: false};
             setTasks([...tasks, newTask]);
             setCurrentTask('');
         }
     };
 
-
     const removeTaskFromBlock = (id:string) => {
         const copyTasks = tasks.filter((task) => task.id !== id);
         setTasks(copyTasks);
+    };
+
+    const toggleTheTask = (id:string) => {
+        const getResultOfChecked = tasks.map((task) =>
+            task.id === id ? {...task, checked: !task.checked} : task
+        );
+        setTasks(getResultOfChecked);
     };
 
     const displayTasks = tasks.map((displayTask) => (
@@ -44,6 +50,8 @@ const App = () => {
             key={displayTask.id}
             task={displayTask.task}
             removeTask={() => removeTaskFromBlock(displayTask.id)}
+            checked={displayTask.checked}
+            onToggleTask={() => toggleTheTask(displayTask.id)}
         />
     ));
 
@@ -55,7 +63,6 @@ const App = () => {
                 {displayTasks}
             </div>
         </div>
-
     );
 };
 
